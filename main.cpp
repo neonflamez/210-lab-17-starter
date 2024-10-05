@@ -63,3 +63,59 @@ void output(Node * hd) {
     }
     cout << endl;
 }
+
+Node* addNodeToFront(Node *head, float value){
+    Node *newNode = new Node;
+    newNode->value = value;
+    newNode->next = nullptr;
+
+    if(!head){
+        return newNode;
+    }
+
+    Node *current = head;
+    while (current->next){
+        current = current->next;
+    }
+    current->next = newNode;
+    return head;
+    
+}
+
+Node* deleteNode(Node *head, int position){
+    if(!head) return head;
+
+    Node *current = head;
+    Node *prev = nullptr;
+
+    if(position == 1){
+        head = current->next;
+        delete current;
+        return head;
+    }
+
+    for(int i = 1; i < position && current != nullptr; i++){
+        prev = current;
+        current = current->next;
+    }
+
+    if(current){
+        prev->next = current->next;
+        delete current;
+    }
+    
+    return head;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
